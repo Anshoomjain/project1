@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: bronze_date
+    config:
+      materialized: view
+      schema: bronze
+
+  - name: bronze_product
+    config:
+      materialized: view
+      schema: bronze
+
+  - name: bronze_sales
+    config:
+      materialized: view
+      schema: bronze
+    columns:
+      - name: sales_id
+        tests:
+          - unique
+          - not_null
+      - name: gross_amount
+        tests:
+          - generic_non_negative   # custom test; make sure the macro exists
+
+  - name: bronze_store
+    config:
+      materialized: view
+      schema: bronze
+    columns:
+      - name: store_sk
+        tests:
+          - unique
+          - not_null
+
+      - name: store_name
+        tests:
+          - accepted_values:
+               arguments:
+                  values:
+                    - MegaMart Manhattan
+                    - MegaMart Brooklyn
+                    - MegaMart Austin
+                    - MegaMart San Jose
+                    - MegaMart Toronto

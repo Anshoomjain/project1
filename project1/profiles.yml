@@ -8,7 +8,17 @@ project1:
       threads: 1
       token: dapi862ba72c87c742ab21969148942a7185
       type: databricks
+    prod:
+      catalog: dbt_tutorial_prod
+      host: dbc-b69aa7e2-7e8a.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/fb98aba3a914fa3d
+      schema: default
+      threads: 1
+      token: dapi862ba72c87c742ab21969148942a7185
+      type: databricks
   target: dev
+
+
 testProject1:
   outputs:
     dev:
@@ -26,6 +36,8 @@ testProject1:
       type: mysql5
       username:
       - username
+
+
     prod:
       database:
       - schema
